@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include ("../partials/header.ejs") %>
+</head>
+
+<body>
+
+  <%- include ("../partials/nav.ejs") %>
+
+<h1>SHINE EJS WIP</h1>
+
+<div class="container">
+  <% for(var student of students) { %>
+    <div class="num">
+      <input type="checkbox" id=1 name=1>
+      <label class="odd" for="1">
+        <%= student.student_number %>
+      </label>
+    </div>
+    <% } %>
+</div>
+
+
+</body>
+</html>

@@ -15,11 +15,10 @@ app
     res.render('pages/index')}
     ); 
 
-    
 app.use('/api/v1/students', studentRoutes); 
 
-app.get('/home', (req, res) => {
-  res.render('pages/index2', {
+app.get('/classroom', (req, res) => {
+  res.render('pages/classroom', {
     students: importData
   })}
 ); 
