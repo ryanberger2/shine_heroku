@@ -1,0 +1,12 @@
+[
+    {
+        "student_first_name": "Suzy", 
+        "student_last_name": "Q", 
+        "student_number": 5
+    }, 
+    {
+        "student_first_name": "Johnny", 
+        "student_last_name": "Good", 
+        "student_number": 7
+    }
+]
