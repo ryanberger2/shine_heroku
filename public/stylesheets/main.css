@@ -1,27 +1,60 @@
-.jumbotron {
-  background: #532F8C;
-  color: white;
-  padding-bottom: 80px; }
-  .jumbotron .btn-primary {
-    background: #845ac7;
-    border-color: #845ac7; }
-    .jumbotron .btn-primary:hover {
-      background: #7646c1; }
-  .jumbotron p {
-    color: #d9ccee;
-    max-width: 75%;
-    margin: 1em auto 2em; }
-  .navbar + .jumbotron {
-    margin-top: -20px; }
-  .jumbotron .lang-logo {
-    display: block;
-    background: #B01302;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    border: 2px solid white; }
-    .jumbotron .lang-logo img {
-      max-width: 100%; }
+@font-face { 
+  font-family: 'Short Stack', serif; 
+  src: url('https://fonts.googleapis.com/css?family=Short+Stack'); 
+} 
 
+* {
+  color:  rgb(253, 216, 253);
+  font-family: 'Short Stack';
+  font-size: 100px;
+  text-align: center;
+  background-color: black;
+}
+
+h1 {
+  font-family: 'Short Stack', 'Courier New', Courier, monospace; 
+  color: white;
+}
+
+body {
+  background-color:  black;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content:  center;
+}
+
+input:not(:checked) + label {
+  font-weight: 1000;
+  
+  transform:  scale(1);
+  transition: 500ms ease;
+  margin:  none;
+}
+
+input:checked + label {
+  font-weight:  40;
+  font-size:  80px;
+  opacity:  0.4;
+  transform:  scale(0.8);
+  transition: 500ms ease;	
+  margin:  0px 5px;
+}
+
+input[type="checkbox"] {
+  opacity:  0;
+}
+
+.even {
+  color: #9D00FF;
+}
+
+.odd {
+  color:  #39FF14;
+}
+
+.test {
+  color: red;
+}

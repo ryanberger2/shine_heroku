@@ -22,5 +22,37 @@
         "student_last_name": "Jones", 
         "student_birth_date": "2014-10-10", 
         "is_deleted": false
+    }, 
+    {
+        "class_id": 1, 
+        "student_number": 4, 
+        "student_first_name": "Abdul", 
+        "student_last_name": "Helena", 
+        "student_birth_date": "2014-11-11", 
+        "is_deleted": false
+    }, 
+    {
+        "class_id": 1, 
+        "student_number": 5, 
+        "student_first_name": "Jenny", 
+        "student_last_name": "Jacobs", 
+        "student_birth_date": "2014-12-12", 
+        "is_deleted": false
+    }, 
+    {
+        "class_id": 1, 
+        "student_number": 6, 
+        "student_first_name": "Cindy", 
+        "student_last_name": "Lou", 
+        "student_birth_date": "2014-01-02", 
+        "is_deleted": false
+    }, 
+    {
+        "class_id": 1, 
+        "student_number": 7, 
+        "student_first_name": "Mary", 
+        "student_last_name": "Bell", 
+        "student_birth_date": "2014-01-03", 
+        "is_deleted": false
     }
 ]

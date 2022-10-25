@@ -5,16 +5,13 @@
 </head>
 
 <body>
-
-  <%- include ("../partials/nav.ejs") %>
-
 <h1>SHINE EJS WIP</h1>
 
 <div class="container">
   <% for(var student of students) { %>
     <div class="num">
-      <input type="checkbox" id=1 name=1>
-      <label class="odd" for="1">
+      <input type="checkbox" id=<%= student.student_number %> name=<%= student.student_number %>>
+      <label class="font-effect-neon" for=<%= student.student_number %>>
         <%= student.student_number %>
       </label>
     </div>
