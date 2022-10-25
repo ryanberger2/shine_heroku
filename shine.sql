@@ -17,8 +17,9 @@ create table classrooms (
 create table students (
     student_id serial, 
     class_id integer not null, 
-    student_first_name varchar(255) not null , 
-    student_last_name varchar(255) not null , 
+    student_number smallint not null, 
+    student_first_name varchar(255) not null, 
+    student_last_name varchar(255) not null, 
     student_birth_date date, 
     is_deleted boolean default false, 
     create_timestamp timestamp default now(), 

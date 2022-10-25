@@ -1,20 +1,32 @@
-const express = require('express')
+const express = require('express'); 
+const studentRoutes = require('./src/student/routes'); 
 const app = express(); 
-const path = require('path')
-const importData = require("./data.json")
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000; 
+const path = require('path'); 
+const importData = require("./data.json"); 
 
-// import 'tachyons';
+app.use(express.json()); 
 
 app
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/', function (req, res) {
-    return res.render('pages/index')}
-    )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`)); 
+  .get('/', (req, res) => {
+    res.render('pages/index')}
+    ); 
+
+    
+app.use('/api/v1/students', studentRoutes); 
+
+app.get('/home', (req, res) => {
+  res.render('pages/index2', {
+    students: importData
+  })}
+); 
 
 app.get("/students", (req, res) => {
   res.send(importData); 
 })
+
+
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`)); 

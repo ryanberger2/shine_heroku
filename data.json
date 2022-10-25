@@ -1,12 +1,26 @@
 [
     {
+        "class_id": 1, 
+        "student_number": 1, 
         "student_first_name": "Suzy", 
         "student_last_name": "Q", 
-        "student_number": 5
+        "student_birth_date": "2015-01-01", 
+        "is_deleted": false
     }, 
     {
+        "class_id": 1, 
+        "student_number": 2, 
         "student_first_name": "Johnny", 
         "student_last_name": "Good", 
-        "student_number": 7
+        "student_birth_date": "2014-09-09", 
+        "is_deleted": false
+    }, 
+    {
+        "class_id": 1, 
+        "student_number": 3, 
+        "student_first_name": "Vicky", 
+        "student_last_name": "Jones", 
+        "student_birth_date": "2014-10-10", 
+        "is_deleted": false
     }
 ]
