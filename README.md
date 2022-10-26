@@ -26,12 +26,12 @@
 Routes needed: 
 |Method     |URLs                     |Actions                                                        |
 |:---       |:---                     |:---                                                           |
-|GET        |api/v1/classroom/new     |get a route to create a new classroom                          |
+|GET        |api/v1/classroom/new     |get a web form to create a new classroom                       |
 |POST       |api/v1/classroom/new     |create a new classroom and show its details with no students   |
 |GET        |api/v1/classroom/:id     |get a single classroom and all students                        |
 |PUT        |api/v1/classroom/:id     |update details of a single classroom                           |
 |DELETE     |api/v1/classroom/:id     |remove a classroom and its dependencies                        |
-|GET        |api/v1/student/new       |get a route to create a new student                            |
+|GET        |api/v1/student/new       |get a web form to create a new student                         |
 |POST       |api/v1/student/new       |create a new student and redirect to show their details        |
 |GET        |api/v1/student/:id       |get a single student and their details                         |
 |PUT        |api/v1/student/:id       |update details of a single student                             |
