@@ -26,12 +26,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/ryanberger2/shine_heroku"
   },
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
+  "author": "ryanberger2",
   "license": "MIT"
 }
