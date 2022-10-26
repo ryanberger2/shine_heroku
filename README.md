@@ -3,10 +3,13 @@
 ## 1. Figure out how to connect Express.js to database 
 
 ## 2. Look at some examples of other Express Heroku Postgres projects to see how they set it up
+- This is my favorite example so far, and it helped me work through #1 : https://www.taniarascia.com/node-express-postgresql-heroku/
 
 ## 3. Write create tables and populate tables scripts 
+This has all been added in the `shine.sql` file 
 
 ## 4. Figure out how to get a classroom's worth of students
+Adding all the routing logic to `server.js` for now. 
 
 ## 5. Make a form to create a new student 
   As a user, 
@@ -20,7 +23,9 @@
   
 ## 6. Remove / Update students 
 
+
 ## 7. Write some JS to reload the page frequently to get the current state of students 
+
 
 
 Routes needed: 
