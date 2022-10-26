@@ -1,8 +1,8 @@
 # Steps Remaining 10/25/2022
 
-## 1. Figure out how to connect Express.js to that database 
+## 1. Figure out how to connect Express.js to database 
 
-## 2. Look at some examples of other Express Heroku Postgres projects to see how they set stuff up
+## 2. Look at some examples of other Express Heroku Postgres projects to see how they set it up
 
 ## 3. Write create tables and populate tables scripts 
 
