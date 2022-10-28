@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../partials/header.ejs") %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Thanks for adding a new student!</h1> 
+    <p>You added <%= data.student_first_name + ' ' + data.student_last_name %> to the <%= data.class_name %> classroom. </p>
+    <p><a href="/classroom/shine">Return to classroom</a></p>
+</body>
+</html>

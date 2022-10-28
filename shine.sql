@@ -4,8 +4,8 @@ drop table if exists events cascade;
 
 -- Create classrooms 
 create table classrooms (
-    class_id serial, 
-    class_name varchar(255) not null, 
+    class_id serial unique, 
+    class_name varchar(255) not null unique, 
     teacher_first_name varchar(255) not null, 
     teacher_last_name varchar(255) not null, 
     is_deleted boolean default false, 
@@ -15,12 +15,12 @@ create table classrooms (
 
 -- Create students 
 create table students (
-    student_id serial, 
+    student_id serial unique, 
     class_name varchar(255) not null, 
-    student_number smallint not null, 
     student_first_name varchar(255) not null, 
     student_last_name varchar(255) not null, 
     student_birth_date date, 
+    student_number smallint unique not null, 
     is_deleted boolean default false, 
     create_timestamp timestamp default now(), 
     CONSTRAINT students_pk primary key(student_id)
@@ -28,7 +28,7 @@ create table students (
 
 -- Create events
 create table events (
-    event_id serial, 
+    event_id serial unique, 
     event_name varchar(255) not null, 
     create_timestamp timestamp default now(), 
     is_deleted boolean default false, 
@@ -58,15 +58,15 @@ values
 ; 
 
 -- Insert into students 
-insert into students (class_name, student_number, student_first_name, student_last_name, student_birth_date)
+insert into students (class_name, student_first_name, student_last_name, student_birth_date, student_number)
 values 
-    ('SHINE', 1, 'Suzy', 'Q', '2015-01-01'), 
-    ('SHINE', 2, 'Johnny', 'Good', '2015-01-02'), 
-    ('SHINE', 3, 'Vicky', 'Jones', '2015-01-03'), 
-    ('SHINE', 4, 'Abdul', 'Helena', '2015-01-04'), 
-    ('SHINE', 5, 'Jenny', 'Jacobs', '2015-01-05'), 
-    ('SHINE', 6, 'Cindy', 'Lou', '2015-01-06'), 
-    ('HAWKS', 7, 'Mary', 'Bell', '2015-01-07')
+    ('SHINE', 'Suzy', 'Q', '2015-01-01', 1), 
+    ('SHINE', 'Johnny', 'Good', '2015-01-02', 2), 
+    ('SHINE', 'Vicky', 'Jones', '2015-01-03', 3), 
+    ('SHINE', 'Abdul', 'Helena', '2015-01-04', 4), 
+    ('SHINE', 'Jenny', 'Jacobs', '2015-01-05', 5), 
+    ('SHINE', 'Cindy', 'Lou', '2015-01-06', 6), 
+    ('HAWKS', 'Mary', 'Bell', '2015-01-07', 7)
 ; 
 
 -- Insert into events

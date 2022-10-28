@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const studentRoutes = require('./src/student/routes'); 
 const path = require('path'); 
 const importData = require("./data.json"); 
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app
   .use(express.static(path.join(__dirname, 'public')))
@@ -27,46 +28,68 @@ app
 
 
 // Routes for a CLASSROOM
-const getStudents = (req, res) => {
-  pool.query('SELECT * FROM students WHERE class_id = 1', (error, results) => {
+const getStudentsByClassname = (req, res) => {
+  const classname = req.params.classname
+  pool.query('SELECT * FROM students WHERE class_name = $1', [classname], (error, results) => {
       if (error) {
         throw error
       }
-      res.status(200).json(results.rows) 
+      // res.status(200)
+      // res.json(results.rows)
+      res.render('pages/classroom', {students: results.rows})
   })
 }
 
 app
-  .route('/classroom/:id')
+  .route('/classroom/:classname')
   // GET endpoint
-  .get(getStudents)
+  .get(getStudentsByClassname)
 
 
 // Routes for a STUDENT
-const addStudent = (req, res) => {
-  const {class_id, student_number, student_first_name, student_last_name, student_birth_date} = request.body  
-  pool.query(
-    'INSERT INTO students (class_id, student_number, student_first_name, student_last_name, student_birth_date) VALUES ($1, $2, $3, $4, $5)', 
-    [class_id, student_number, student_first_name, student_last_name, student_birth_date], 
-    (error, results) => {
-      if (error) {
-        throw error
-      }
-      res.status(201).json({ status: 'success', message: 'Student added.'})
-  })
-}
+app.get('/student/new', (req, res) => {
+  res.render('pages/studentform')
+})
 
-app
-  .route('/student/new')
-  .get((req, res) => {
-    res.render('pages/studentform', {
-      students: importData
-    })}
-  )
-  .post((req, res) => {
-    console.log(req.body); 
-    // addStudent
-   })
+app.post('/student/new', urlencodedParser, (req, res) => {
+  console.log(req.body); 
+  const {class_name, student_first_name, student_last_name, student_birth_date, student_number} = req.body; 
+  pool.query("INSERT INTO students (class_name, student_first_name, student_last_name, student_birth_date, student_number) VALUES ($1, $2, $3, $4, $5) RETURNING *", [class_name, student_first_name, student_last_name, student_birth_date, student_number])
+  res.render('pages/student-added', {data: req.body}); 
+})
+
+app.get('/student/:id', (req, res) => {
+  const id = req.params.id
+  data = pool.query('SELECT * FROM students WHERE student_id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200)
+    res.json(results.rows)
+  })
+})
+
+// const addStudent = (req, res) => {
+//   const {class_name, student_first_name, student_last_name, student_birth_date, student_number} = req.body  
+//   pool.query(
+//     'INSERT INTO students (class_name, student_first_name, student_last_name, student_birth_date, student_number) VALUES ($1, $2, $3, $4, $5) RETURNING *', 
+//     [class_name, student_first_name, student_last_name, student_birth_date, student_number], 
+//     (error, results) => {
+//       if (error) {
+//         throw error
+//       }
+//       res.status(201).send(`${res.rows[0].student_first_name} ${res.rows[0].student_last_name} added`)
+//   })
+// }
+
+// app
+//   .route('/student/new')
+//   .get((req, res) => {
+//     res.render('pages/studentform', {
+//       students: importData
+//     })}
+//   )
+//   .post(addStudent)
   
 
 

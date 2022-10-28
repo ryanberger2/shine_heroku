@@ -3,8 +3,8 @@ const controller = require('./controller');
 
 const router = Router(); 
 
-router.get("/", controller.getStudents); 
-router.get("/:id", controller.getStudentById); 
+router.get("/", controller.getStudents1); 
+router.get("/:id", controller.getStudentById1); 
 
 module.exports = router; 
 
