@@ -39,7 +39,7 @@ Added all the routing logic to `server.js` for now.
 
 Routes needed: 
 |Method     |URLs                     |Actions                                                        |Status |
-|:---       |:---                     |:---                                                           |       |
+|:---       |:---                     |:---                                                           |:---   |
 |GET        |api/v1/classroom/new     |get a web form to create a new classroom                       |       |
 |POST       |api/v1/classroom/new     |create a new classroom and show its details with no students   |       |
 |GET        |api/v1/classroom/:id     |get a single classroom and all students                        |       |
