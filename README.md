@@ -38,18 +38,18 @@ Added all the routing logic to `server.js` for now.
 
 
 Routes needed: 
-|Method     |URLs                     |Actions                                                        |
-|:---       |:---                     |:---                                                           |
-|GET        |api/v1/classroom/new     |get a web form to create a new classroom                       |
-|POST       |api/v1/classroom/new     |create a new classroom and show its details with no students   |
-|GET        |api/v1/classroom/:id     |get a single classroom and all students                        |
-|PUT        |api/v1/classroom/:id     |update details of a single classroom                           |
-|DELETE     |api/v1/classroom/:id     |remove a classroom and its dependencies                        |
-|GET        |api/v1/student/new       |get a web form to create a new student                         |
-|POST       |api/v1/student/new       |create a new student and redirect to show their details        |
-|GET        |api/v1/student/:id       |get a single student and their details                         |
-|PUT        |api/v1/student/:id       |update details of a single student                             |
-|DELETE     |api/v1/student/:id       |remove a student and their dependencies                        |
+|Method     |URLs                     |Actions                                                        |Status |
+|:---       |:---                     |:---                                                           |       |
+|GET        |api/v1/classroom/new     |get a web form to create a new classroom                       |       |
+|POST       |api/v1/classroom/new     |create a new classroom and show its details with no students   |       |
+|GET        |api/v1/classroom/:id     |get a single classroom and all students                        |       |
+|PUT        |api/v1/classroom/:id     |update details of a single classroom                           |       |
+|DELETE     |api/v1/classroom/:id     |remove a classroom and its dependencies                        |       |
+|GET        |api/v1/student/new       |get a web form to create a new student                         |       |
+|POST       |api/v1/student/new       |create a new student and redirect to show their details        |       |
+|GET        |api/v1/student/:id       |get a single student and their details                         |       |
+|PUT        |api/v1/student/:id       |update details of a single student                             |       |
+|DELETE     |api/v1/student/:id       |remove a student and their dependencies                        |       |
 
 
 -----------
