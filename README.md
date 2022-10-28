@@ -1,3 +1,20 @@
+# Steps for 10/28 weekend 
+
+1. Make update form for updating student 
+-- Render a student detail page 
+-- Render form with student's details added 
+-- Handle submission of update data and do an update 
+
+2. Add teacher's name to classroom 
+-- Go back and rewatch ajax chapter
+-- The challenge is to use promises or two promises with async await 
+
+3. Persist whether student is highlighted or not 
+-- Write the js to handle the click 
+-- Write the endpoint to update it 
+
+
+
 # Steps Remaining 10/25/2022
 
 ## 1. Figure out how to connect Express.js to database 
