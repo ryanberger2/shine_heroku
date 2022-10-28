@@ -16,7 +16,7 @@ create table classrooms (
 -- Create students 
 create table students (
     student_id serial, 
-    class_id integer not null, 
+    class_name varchar(255) not null, 
     student_number smallint not null, 
     student_first_name varchar(255) not null, 
     student_last_name varchar(255) not null, 
@@ -38,8 +38,8 @@ create table events (
 
 alter table students
     add constraint fk_classroom
-    foreign key (class_id)
-    references classrooms (class_id)
+    foreign key (class_name)
+    references classrooms (class_name)
 ; 
 
 alter table events
@@ -58,15 +58,15 @@ values
 ; 
 
 -- Insert into students 
-insert into students (class_id, student_number, student_first_name, student_last_name, student_birth_date)
+insert into students (class_name, student_number, student_first_name, student_last_name, student_birth_date)
 values 
-    (1, 1, 'Suzy', 'Q', '2015-01-01'), 
-    (1, 2, 'Johnny', 'Good', '2015-01-02'), 
-    (1, 3, 'Vicky', 'Jones', '2015-01-03'), 
-    (1, 4, 'Abdul', 'Helena', '2015-01-04'), 
-    (1, 5, 'Jenny', 'Jacobs', '2015-01-05'), 
-    (1, 6, 'Cindy', 'Lou', '2015-01-06'), 
-    (1, 7, 'Mary', 'Bell', '2015-01-07')
+    ('SHINE', 1, 'Suzy', 'Q', '2015-01-01'), 
+    ('SHINE', 2, 'Johnny', 'Good', '2015-01-02'), 
+    ('SHINE', 3, 'Vicky', 'Jones', '2015-01-03'), 
+    ('SHINE', 4, 'Abdul', 'Helena', '2015-01-04'), 
+    ('SHINE', 5, 'Jenny', 'Jacobs', '2015-01-05'), 
+    ('SHINE', 6, 'Cindy', 'Lou', '2015-01-06'), 
+    ('HAWKS', 7, 'Mary', 'Bell', '2015-01-07')
 ; 
 
 -- Insert into events

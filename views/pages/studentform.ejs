@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../partials/header.ejs") %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create a new student</h1> 
+    <form id="create-student" method="POST" action="/student/new">
+        <label for="class_id">Which Class?</label>
+        <select name="class_id" id="class_id">
+            <!-- Create dropdown of class options -->
+            <option label=1 value=1>1</option>
+        </select>
+    <br />
+        <label for="student_first_name">First name</label>
+        <input type="text" name="student_first_name" id="student_first_name" required value="<%#= student.student_first_name %>">
+    <br />
+        <label for="student_last_name">Last name</label>
+        <input type="text" name="student_last_name" id="student_last_name" required value="<%#= student.student_first_name %>">
+    <br />
+        <label for="student_birth_date">Birth date</label>
+        <input type="date" name="student_birth_date" id="student_birth_date" required value="<%#= student.student_birth_date %>">
+    <br />
+        <label for="student_number">Student number</label>
+        <input type="number" name="student_number" id="student_number" required value="<%#= student.student_number %>" min="1" max="40">
+    <br />
+        <button type="reset">Reset</button>
+        <button type="submit">Add student</button>
+    </form>
+</body>
+</html>

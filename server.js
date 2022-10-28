@@ -59,9 +59,15 @@ const addStudent = (req, res) => {
 app
   .route('/student/new')
   .get((req, res) => {
-    res.send('Form to create a student')
-  })
-  .post(addStudent)
+    res.render('pages/studentform', {
+      students: importData
+    })}
+  )
+  .post((req, res) => {
+    console.log(req.body); 
+    // addStudent
+   })
+  
 
 
 app.get("/students", (req, res) => {

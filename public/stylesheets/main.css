@@ -26,6 +26,10 @@ body {
   justify-content:  center;
 }
 
+form > label, input, select, button {
+  font-size: 30px; 
+}
+
 input:not(:checked) + label {
   font-weight: 1000;
   

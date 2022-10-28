@@ -1,6 +1,8 @@
 # Steps Remaining 10/25/2022
 
 ## 1. Figure out how to connect Express.js to database 
+- This is basically done. Proof that it is "working" can currently been seen by visiting 
+https://peaceful-reaches-86693.herokuapp.com/classroom/1
 
 ## 2. Look at some examples of other Express Heroku Postgres projects to see how they set it up
 - This is my favorite example so far, and it helped me work through #1 : https://www.taniarascia.com/node-express-postgresql-heroku/
@@ -9,7 +11,7 @@
 This has all been added in the `shine.sql` file 
 
 ## 4. Figure out how to get a classroom's worth of students
-Adding all the routing logic to `server.js` for now. 
+Added all the routing logic to `server.js` for now. 
 
 ## 5. Make a form to create a new student 
   As a user, 
@@ -20,7 +22,14 @@ Adding all the routing logic to `server.js` for now.
   And I can fill out the form and submit 
   And I can see that I submitted the student successfully (or unsuccessfully) 
   And I can get back to the classroom to see all my students 
-  
+
+1. Created a form at `/student/new`. 
+2. Currently wiring it up to post to the db. 
+3. Then will add a link to go to the form. 
+4. Then will add query to populate classrooms in the classroom dropdown. 
+5. Then will add validation logic so you can't post the same student twice. 
+6. Then will style the form. 
+
 ## 6. Remove / Update students 
 
 
