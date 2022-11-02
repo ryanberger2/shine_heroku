@@ -1,3 +1,9 @@
+# Steps as of 11/1
+
+1. Read about MVC (model view controller) setup and think about creating classes to separate out things. Think about creating a function that represents a query. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+2. Complete remaining tasks from weekend 
+
 # Steps for 10/28 weekend 
 
 1. Make update form for updating student 
