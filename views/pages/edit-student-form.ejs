@@ -44,7 +44,7 @@
             let btnPrev = document.getElementById("btnPrev"); 
             let student_name = document.getElementById("student_name").value; 
             let robot_offset = document.getElementById("robot_offset"); 
-            img = document.getElementById("robotImage"); 
+            let img = document.getElementById("robotImage"); 
 
             btnNext.addEventListener('click', () => {
                 robot_offset.value = parseInt(robot_offset.value) + 1
@@ -64,7 +64,21 @@
         <input type="number" name="student_points" id="student_points" required value="<%= student.student_points %>" min="0">
     <br /> 
         <label for="student_state">Student active</label>
-        <input type="checkbox" name="student_state" id="student_state" class="student-form" value="<%= student.student_state %>">
+        <input type="checkbox" name="student_check" id="student_check" class="student-form" <% if (student.student_state==true) { %> checked="checked" <% } %>>
+        <input type="hidden" name="student_state" id="student_state" <% if (student.student_state==true) {%> value="true" <%} else {%> <%= "value='off'" %> <%}; console.log(student.student_state)%>>
+        <script>
+            let studentCheck = document.getElementById('student_check'); 
+
+            studentCheck.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.getElementById('student_state').value = true
+                    console.log(studentState)
+                } else {
+                    document.getElementById('student_state').value = false
+                    console.log(studentState)
+                }
+            }); 
+        </script>
     <br />
         <button type="reset">Reset</button>
         <button type="submit">Update student</button>

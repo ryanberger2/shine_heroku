@@ -11,28 +11,58 @@
     <h1>Create a new student</h1> 
     <% if(locals.messages) { %><p> Error in form submission: <%= messages %></p> <% } %>
     <form id="create-student" method="POST" action="/student/new">
-    <label for="class_name">Which Class?</label>
-    <select name="class_name" id="class_name">
-        <!-- Create dropdown of class options -->
-        <% for(let classroom of classrooms) { %>
-            <option label=<%= classroom.class_name %> value=<%= classroom.class_name %>><%= classroom.class_name %></option>
-        <% } %>
-    </select>
-    <br />
-        <label for="student_first_name">First name</label>
-        <input type="text" name="student_first_name" id="student_first_name" required value="<%#= student.student_first_name %>">
-    <br />
-        <label for="student_last_name">Last name</label>
-        <input type="text" name="student_last_name" id="student_last_name" required value="<%#= student.student_first_name %>">
-    <br />
-        <label for="student_birth_date">Birth date</label>
-        <input type="date" name="student_birth_date" id="student_birth_date" required value="<%#= student.student_birth_date %>">
-    <br />
-        <label for="student_number">Student number</label>
-        <input type="number" name="student_number" id="student_number" required value="<%#= student.student_number %>" min="1" max="40">
-    <br />
-        <button type="reset">Reset</button>
-        <button type="submit">Add student</button>
+        <label for="class_name">Which Class?</label>
+        <select name="class_name" id="class_name">
+            <!-- Create dropdown of class options -->
+            <% for(let classroom of classrooms) { %>
+                <option label=<%= classroom.class_name %> value=<%= classroom.class_name %>><%= classroom.class_name %></option>
+            <% } %>
+        </select>
+        <br />
+            <label for="student_name">Student name</label>
+            <input type="text" name="student_name" id="student_name" required value="<%#= student.student_name %>">
+        <br />
+            <label for="student_birth_date">Birth date</label>
+            <input type="date" name="student_birth_date" id="student_birth_date" required value="<%#= student.student_birth_date %>">
+        <br />
+            <label for="robot_offset">Robot avatar</label>
+            <input type="hidden" name="robot_offset" id="robot_offset" required value="0">
+            <img alt="robot" id="robotImage" src="https://robohash.org/0?size=200x200"" />
+            <button id="btnPrev" type="button">-</button>
+            <button id="btnNext" type="button">+</button>
+            <script> 
+                let btnNext = document.getElementById("btnNext"); 
+                let btnPrev = document.getElementById("btnPrev"); 
+                let student_name = document.getElementById("student_name"); 
+                let robot_offset = document.getElementById("robot_offset").value; 
+                img = document.getElementById("robotImage"); 
+
+                student_name.addEventListener('input', () => {
+                    console.log('changed')
+                    img.src=`https://robohash.org/${student_name.value}${robot_offset}?size=200x200`
+                }); 
+
+                btnNext.addEventListener('click', () => {
+                    console.log('click+');
+                    document.getElementById("robot_offset").value = robot_offset = parseInt(robot_offset) + 1
+                    img.src=`https://robohash.org/${student_name.value}${robot_offset}?size=200x200`
+                }); 
+
+                btnPrev.addEventListener('click', () => {
+                    console.log('click-');
+                    document.getElementById("robot_offset").value = robot_offset = parseInt(robot_offset) - 1
+                    img.src=`https://robohash.org/${student_name.value}${robot_offset}?size=200x200`
+                }); 
+            </script>
+        <br />
+            <label for="student_emojis">Student emojis</label>
+            <input type="text" name="student_emojis" id="student_emojis" required value="😄">
+        <br />
+            <label for="student_points">Student points</label>
+            <input type="number" name="student_points" id="student_points" required value="1" min="0">
+        <br />
+            <button type="reset">Reset</button>
+            <button type="submit">Add student</button>
     </form>
 </body>
 </html>

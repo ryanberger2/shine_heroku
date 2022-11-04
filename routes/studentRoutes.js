@@ -22,11 +22,11 @@ studentRouter
 studentRouter
     .post('/new', urlencodedParser, (req, res) => {
     console.log(req.body); 
-    const {class_name, student_first_name, student_last_name, student_birth_date, student_number} = req.body; 
+    const {class_name, student_name, student_birth_date, student_points, student_emojis, robot_offset} = req.body; 
     pool.query(`INSERT INTO students 
-              (class_name, student_first_name, student_last_name, student_birth_date, student_number) 
-              VALUES ($1, $2, $3, $4, $5) RETURNING *`, 
-              [class_name, student_first_name, student_last_name, student_birth_date, student_number], 
+              (class_name, student_name, student_birth_date, student_points, student_emojis, robot_offset) 
+              VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, 
+              [class_name, student_name, student_birth_date, student_points, student_emojis, robot_offset], 
         (err, result) => {
         if (err) {
             console.log(err)
@@ -104,12 +104,12 @@ studentRouter
   
 studentRouter
     .post('/:id', (req, res) => {
-        const id = req.params.id
-        const {student_name, student_birth_date, student_number, student_points, student_state, student_emojis, robot_offset} = req.body; 
+        const id = req.params.id; 
+        const {student_name, student_birth_date, student_points, student_state, student_emojis, robot_offset} = req.body; 
         console.log(req.body); 
         pool.query(
-            'UPDATE students SET student_name = $2, student_birth_date = $3, student_number = $4, student_points = $5, student_state = $6, student_emojis = $7, robot_offset = $8 WHERE student_id = ' + id, 
-            [id, student_name, student_birth_date, student_number, student_points, student_state, student_emojis, robot_offset], 
+            'UPDATE students SET student_name = $2, student_birth_date = $3, student_points = $4, student_state = $5, student_emojis = $6, robot_offset = $7 WHERE student_id = $1',
+            [id, student_name, student_birth_date, student_points, student_state, student_emojis, robot_offset], 
             (error, results) => {
         if (error) {
             throw error
@@ -118,5 +118,6 @@ studentRouter
         res.json(results.rows)
         })
     })
+
 
   module.exports = studentRouter; 
