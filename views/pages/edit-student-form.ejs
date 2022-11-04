@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../partials/header.ejs") %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% 
+        function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+        }
+
+        function formatDate(date) {
+        return [
+            date.getFullYear(),
+            padTo2Digits(date.getMonth() + 1),
+            padTo2Digits(date.getDate()),
+        ].join('-');
+        }
+    %>
+    <h1>Student details for <%= student.student_name %></h1> 
+    <h2>Class: <%= student.class_name %>, Student id: <%= student.student_id %> </h2>
+    <form id="create-student" method="POST" action="/student/<%= student.student_id %>">
+    <br />
+        <label for="student_name">Student name</label>
+        <input type="text" name="student_name" id="student_name" required value="<%= student.student_name %>">
+    <br />
+        <label for="student_birth_date">Birth date</label>
+        <input type="date" name="student_birth_date" id="student_birth_date" required value="<%= formatDate(student.student_birth_date) %>">
+    <!-- <br />
+        <label for="student_image">Student image</label>
+        <input type="hidden" name="student_image" id="student_image" required value="<%#= student.student_image %>"> -->
+    <br />
+        <label for="robot_offset">Robot avatar</label>
+        <input type="hidden" name="robot_offset" id="robot_offset" required value="<%= student.robot_offset %>">
+        <img alt="robot" id="robotImage" src="<%= "https://robohash.org/" + student.student_name + student.robot_offset + "?size=200x200" %>" />
+        <button id="btnPrev" type="button">-</button>
+        <button id="btnNext" type="button">+</button>
+        <script> 
+            let btnNext = document.getElementById("btnNext"); 
+            let btnPrev = document.getElementById("btnPrev"); 
+            let student_name = document.getElementById("student_name").value; 
+            let robot_offset = document.getElementById("robot_offset"); 
+            img = document.getElementById("robotImage"); 
+
+            btnNext.addEventListener('click', () => {
+                robot_offset.value = parseInt(robot_offset.value) + 1
+                img.src=`https://robohash.org/${student_name}${robot_offset.value}?size=200x200`
+            }); 
+
+            btnPrev.addEventListener('click', () => {
+                robot_offset.value = parseInt(robot_offset.value) - 1
+                img.src=`https://robohash.org/${student_name}${robot_offset.value}?size=200x200`
+            }); 
+        </script>
+    <br />
+        <label for="student_emojis">Student emojis</label>
+        <input type="text" name="student_emojis" id="student_emojis" required value="<%= student.student_emojis %>">
+    <br />
+        <label for="student_points">Student points</label>
+        <input type="number" name="student_points" id="student_points" required value="<%= student.student_points %>" min="0">
+    <br /> 
+        <label for="student_state">Student active</label>
+        <input type="checkbox" name="student_state" id="student_state" class="student-form" value="<%= student.student_state %>">
+    <br />
+        <button type="reset">Reset</button>
+        <button type="submit">Update student</button>
+    </form>
+</body>
+</html>

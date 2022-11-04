@@ -9,12 +9,15 @@
 </head>
 <body>
     <h1>Create a new student</h1> 
+    <% if(locals.messages) { %><p> Error in form submission: <%= messages %></p> <% } %>
     <form id="create-student" method="POST" action="/student/new">
-        <label for="class_name">Which Class?</label>
-        <select name="class_name" id="class_name">
-            <!-- Create dropdown of class options -->
-            <option label="SHINE" value="SHINE">SHINE</option>
-        </select>
+    <label for="class_name">Which Class?</label>
+    <select name="class_name" id="class_name">
+        <!-- Create dropdown of class options -->
+        <% for(let classroom of classrooms) { %>
+            <option label=<%= classroom.class_name %> value=<%= classroom.class_name %>><%= classroom.class_name %></option>
+        <% } %>
+    </select>
     <br />
         <label for="student_first_name">First name</label>
         <input type="text" name="student_first_name" id="student_first_name" required value="<%#= student.student_first_name %>">

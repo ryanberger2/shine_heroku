@@ -11,6 +11,10 @@
 	background-color: black;
 }
 
+.container:before {
+  content: none
+}
+
 body {
 	background-color:  black;
 }

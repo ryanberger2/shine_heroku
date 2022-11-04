@@ -13,6 +13,13 @@
 
 h1 {
   font-family: 'Short Stack', 'Courier New', Courier, monospace; 
+  font-size: 0.5em; 
+  color: white;
+}
+
+h2, h3 {
+  font-family: 'Short Stack', 'Courier New', Courier, monospace; 
+  font-size: 0.4em; 
   color: white;
 }
 
@@ -50,7 +57,12 @@ input:checked + label {
   margin:  0px 5px;
 }
 
-input[type="checkbox"] {
+input.student-form[type="checkbox"] {
+  width: 20px; 
+  height: 20px; 
+}
+
+input.student-check[type="checkbox"] {
   opacity:  0;
 }
 
