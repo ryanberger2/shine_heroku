@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize'); 
 require('dotenv').config(); 
 
-const isProduction = process.env.NODE_ENV === 'production'
-const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
+// const isProduction = process.env.NODE_ENV === 'production'
+// const connectionString = 'postgresql://rberger:password@localhost:5432/shine'
 
 const sequelize = new Sequelize(
     `${process.env.DB_DATABASE}`, 
@@ -14,5 +14,14 @@ const sequelize = new Sequelize(
     }
     // ssl: { rejectUnauthorized: false }
 ); 
+
+
+// sequelize.authenticate().then(() => {
+//     console.log('Connection established successfully.');
+//   }).catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   }).finally(() => {
+//     sequelize.close();
+//   });
 
 module.exports = sequelize; 

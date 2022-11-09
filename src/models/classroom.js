@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
 const sequelize = require('./../configs/sequelize'); 
+const Sequelize = require('sequelize'); 
 
 module.exports = sequelize.define('classrooms', {
         class_name: {

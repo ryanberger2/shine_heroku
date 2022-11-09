@@ -1,11 +1,11 @@
-drop table if exists classroom cascade; 
-drop table if exists student cascade; 
-drop table if exists student_event cascade; 
-drop table if exists class_event cascade; 
+drop table if exists classrooms cascade; 
+drop table if exists students cascade; 
+drop table if exists student_events cascade; 
+drop table if exists classroom_events cascade; 
 
 -- Create classrooms 
-create table classroom (
-    class_id serial unique, 
+create table classrooms (
+    id serial unique, 
     class_name varchar(255) not null unique, 
     class_color varchar(255) not null default '000000',
     class_emojis varchar(255), 
@@ -18,13 +18,14 @@ create table classroom (
     teacher_image varchar(255), 
     robot_offset smallint default 0, 
     is_deleted boolean default false, 
-    create_timestamp timestamp default now(), 
-    CONSTRAINT classrooms_pk primary key(class_id)
+    "createdAt" timestamp default now(), 
+    "updatedAt" timestamp default now(), 
+    CONSTRAINT classrooms_pk primary key(id)
 ); 
 
 -- Create students 
-create table student (
-    student_id serial unique, 
+create table students (
+    id serial unique, 
     class_name varchar(255) not null, 
     student_name varchar(255) not null, 
     student_birth_date date, 
@@ -34,52 +35,55 @@ create table student (
     student_emojis varchar(255), 
     robot_offset smallint default 0, 
     is_deleted boolean default false, 
-    create_timestamp timestamp default now(), 
-    CONSTRAINT students_pk primary key(student_id)
+    "createdAt" timestamp default now(), 
+    "updatedAt" timestamp default now(), 
+    CONSTRAINT students_pk primary key(id)
 ); 
 
 -- Create class_events
-create table class_event (
+create table classroom_events (
     id serial unique, 
-    class_id integer, 
+    classroom_id integer, 
     event_type varchar(255) not null, 
     event_value varchar(255), 
-    create_timestamp timestamp default now(), 
     is_deleted boolean default false, 
+    createdAt timestamp default now(), 
+    updatedAt timestamp default now(), 
     CONSTRAINT class_events_pk primary key(id)
 ); 
 
 -- Create student_events
-create table student_event (
+create table student_events (
     id serial unique, 
     student_id integer, 
     event_type varchar(255) not null, 
     event_value varchar(255), 
-    create_timestamp timestamp default now(), 
     is_deleted boolean default false, 
+    createdAt timestamp default now(), 
+    updatedAt timestamp default now(), 
     CONSTRAINT student_events_pk primary key(id)
 ); 
 
-alter table student
+alter table students
     add constraint fk_classroom
     foreign key (class_name)
-    references classroom (class_name)
+    references classrooms (class_name)
 ; 
 
-alter table class_event
+alter table classroom_events
     add constraint fk_class
-    foreign key (class_id)
-    references classroom (class_id)
+    foreign key (classroom_id)
+    references classrooms (id)
 ; 
 
-alter table student_event
+alter table student_events
     add constraint fk_student
     foreign key (student_id)
-    references student (student_id)
+    references students (id)
 ; 
 
--- Insert into classroom 
-insert into classroom (class_name, class_color, class_emojis, class_image, class_saying, class_directions, teacher_salutation, teacher_first_name, teacher_last_name, teacher_image)
+-- Insert into classrooms 
+insert into classrooms (class_name, class_color, class_emojis, class_image, class_saying, class_directions, teacher_salutation, teacher_first_name, teacher_last_name, teacher_image)
 values 
     ('SHINE', '000000', '🥳🦖🎃', '', 'We will use kind words.', '', 'Mrs.', 'Treba', 'Hollowell', ''), 
     ('HAWKS', '00ffff', '🤖👨🏽‍🍳🍿', '', 'We aren''t afraid to make mistakes', '', 'Mr.', 'Jim', 'Moriarty', ''), 
@@ -87,8 +91,8 @@ values
     ('BOBCATS', '44ff00', '🎨🎤🍦', '', 'We will listen to each other.', '', 'Mrs.', 'Juniper', 'Guthrie', '')
 ; 
 
--- Insert into student
-insert into student (class_name, student_name, student_birth_date, student_image, student_emojis)
+-- Insert into students
+insert into students (class_name, student_name, student_birth_date, student_image, student_emojis)
 values 
     ('SHINE', 'Suzy Q', '2015-01-01', '', '🍧'), 
     ('SHINE', 'Johnny Good', '2015-01-02', '', '🥦'), 
@@ -99,15 +103,15 @@ values
     ('HAWKS', 'Mariah Bell', '2015-01-07', '', '💡')
 ; 
 
--- Insert into class_event
-insert into class_event (class_id, event_type, event_value, create_timestamp)
+-- Insert into classroom_events
+insert into classroom_events (classroom_id, event_type, event_value, createdat)
 values 
     (1, 'timer_start', '', '2022-10-28 15:02:45.00000'), 
     (1, 'timer_end', '', '2022-10-28 15:10:45.00000')
 ; 
 
--- Insert into student_event
-insert into student_event (student_id, event_type, event_value, create_timestamp)
+-- Insert into student_events
+insert into student_events (student_id, event_type, event_value, createdat)
 values 
     (1, 'focus_start', '', '2022-10-28 15:02:45.00000'), 
     (1, 'focus_end', '', '2022-10-28 15:08:45.00000'), 

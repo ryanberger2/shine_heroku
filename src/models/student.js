@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
 const sequelize = require('./../configs/sequelize'); 
+const Sequelize = require('sequelize'); 
 
 module.exports = sequelize.define('students', {
         class_name: {
@@ -9,7 +9,7 @@ module.exports = sequelize.define('students', {
                 notEmpty: true,
             }
         }, 
-        sstudent_name: {
+        student_name: {
             type: Sequelize.STRING, 
             unique: true,
             allowNull: false, 
