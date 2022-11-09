@@ -1,17 +1,16 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./../configs/sequelize'); 
 
-const getStudentModel = (sequelize, { DataTypes }) => {
-    const Student = sequelize.define('student', {
+module.exports = sequelize.define('students', {
         class_name: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             allowNull: false, 
             validate: {
                 notEmpty: true,
             }
         }, 
         sstudent_name: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             unique: true,
             allowNull: false, 
             validate: {
@@ -19,24 +18,24 @@ const getStudentModel = (sequelize, { DataTypes }) => {
             }
         }, 
         student_birth_date: {
-            type: DataTypes.DATEONLY, 
+            type: Sequelize.DATEONLY, 
         }, 
         student_image: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         student_points: {
-            type: DataTypes.INTEGER, 
+            type: Sequelize.INTEGER, 
             defaultValue: 1,
         }, 
         student_state: {
-            type: DataTypes.BOOLEAN, 
+            type: Sequelize.BOOLEAN, 
             defaultValue: 1,
         }, 
         student_emojis: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         robot_offset: {
-            type: DataTypes.INTEGER, 
+            type: Sequelize.INTEGER, 
             defaultValue: 0,
             allowNull: false, 
             validate: {
@@ -44,7 +43,7 @@ const getStudentModel = (sequelize, { DataTypes }) => {
             }
         }, 
         is_deleted: {
-            type: DataTypes.BOOLEAN, 
+            type: Sequelize.BOOLEAN, 
             defaultValue: 0, 
             allowNull: false, 
             validate: {
@@ -53,11 +52,9 @@ const getStudentModel = (sequelize, { DataTypes }) => {
         }, 
     }); 
     
-    Student.associate = (models) => {
-        Student.belongsTo(models.Classroom, {foreignKey: 'class_name'})
-    }; 
+//     Student.associate = (models) => {
+//         Student.belongsTo(models.Classroom, {foreignKey: 'class_name'})
+//     }; 
     
-    return Student; 
-}; 
-
-module.exports = getStudentModel; 
+//     return Student; 
+// }; 

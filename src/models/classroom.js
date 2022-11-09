@@ -1,7 +1,9 @@
-const getClassroomModel = (sequelize, { DataTypes }) => {
-    const Classroom = sequelize.define('classroom', {
+const Sequelize = require('sequelize')
+const sequelize = require('./../configs/sequelize'); 
+
+module.exports = sequelize.define('classrooms', {
         class_name: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             unique: true, 
             allowNull: false, 
             validate: {
@@ -9,7 +11,7 @@ const getClassroomModel = (sequelize, { DataTypes }) => {
             }
         }, 
         class_color: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             defaultValue: "000000", 
             allowNull: false, 
             validate: {
@@ -17,39 +19,39 @@ const getClassroomModel = (sequelize, { DataTypes }) => {
             }
         }, 
         class_emojis: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         class_image: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         class_saying: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         class_directions: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         teacher_salutation: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         teacher_first_name: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             allowNull: false, 
             validate: {
                 notEmpty: true,
             }
         }, 
         teacher_last_name: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             allowNull: false, 
             validate: {
                 notEmpty: true,
             }
         }, 
         teacher_image: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         robot_offset: {
-            type: DataTypes.INTEGER, 
+            type: Sequelize.INTEGER, 
             defaultValue: 0,
             allowNull: false, 
             validate: {
@@ -57,7 +59,7 @@ const getClassroomModel = (sequelize, { DataTypes }) => {
             }
         }, 
         is_deleted: {
-            type: DataTypes.BOOLEAN, 
+            type: Sequelize.BOOLEAN, 
             defaultValue: 0, 
             allowNull: false, 
             validate: {
@@ -65,11 +67,10 @@ const getClassroomModel = (sequelize, { DataTypes }) => {
             }
         }, 
     }); 
-    Classroom.associate = models => {
-        Classroom.hasMany(models.Student)
-    }
 
-    return Classroom; 
-}; 
+//     Classroom.associate = models => {
+//         Classroom.hasMany(models.Student)
+//     }
 
-module.exports = getClassroomModel; 
+//     return Classroom; 
+// }; 

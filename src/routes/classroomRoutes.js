@@ -2,8 +2,8 @@ const express = require('express');
 const classroomRouter = express.Router(); 
 const db = require('./../models/index.js'); 
 const Sequelize = require('sequelize'); 
-const getStudentModel = require('./../models/student'); 
-const getClassroomModel = require('./../models/classroom'); 
+const Student = require('./../models/student'); 
+const Classroom = require('./../models/classroom'); 
 
 
 // SHOW THE TEACHER'S NAME IN THE PAGE 
@@ -24,12 +24,12 @@ const getClassroomModel = require('./../models/classroom');
 const getClassDetails2 = async (req, res, next) => {
     try {
         let { classname } = req.params
-        let studentDataPromise = getStudentModel.findAll({
+        let studentDataPromise = Student.findAll({
             where: {
                 class_name: classname
             }
         })
-        let classDataPromise = getClassroomModel.findOne({
+        let classDataPromise = Classroom.findOne({
             where: {
                 class_name: classname
             }
