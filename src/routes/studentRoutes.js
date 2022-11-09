@@ -2,8 +2,8 @@ const express = require('express');
 const studentRouter = express.Router(); 
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
-const db = require('../models/index.js'); 
-const { pool } = require('../config')
+const db = require('./../models/index.js'); 
+const { pool } = require('./../../config'); 
 
 const showStudentForm = (req, res, messages) => {
     pool.query('SELECT * FROM classrooms', (error, results) => {

@@ -4,9 +4,9 @@ const { pool } = require('./config')
 const cors = require('cors')
 
 // required routes
-const studentRoutes = require('./routes/studentRoutes')
-const classroomRoutes = require('./routes/classroomRoutes')
-const indexRoutes = require('./routes/indexRoutes.js')
+const studentRoutes = require('./src/routes/studentRoutes')
+const classroomRoutes = require('./src/routes/classroomRoutes')
+const indexRoutes = require('./src/routes/indexRoutes.js')
 
 const app = express(); 
 const path = require('path'); 

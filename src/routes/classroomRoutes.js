@@ -1,10 +1,11 @@
 const express = require('express'); 
 const classroomRouter = express.Router(); 
 const bodyParser = require('body-parser')
-const { pool } = require('../config');
+const { pool } = require('./../../config');
 // const { Client } = require('pg-promise/typescript/pg-subset');
-const db = require('../models/index.js'); 
+const db = require('./../models/index.js'); 
 const { promiseImpl } = require('ejs');
+const Sequilize = require('sequelize'); 
 
 // SHOW THE TEACHER'S NAME IN THE PAGE 
 // TRY WITH COMBINING PROMISES AND ASYNC/AWAIT
