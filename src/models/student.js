@@ -1,3 +1,6 @@
+const Sequelize = require('sequelize')
+const sequelize = require('./../configs/sequelize'); 
+
 const getStudentModel = (sequelize, { DataTypes }) => {
     const Student = sequelize.define('student', {
         class_name: {
@@ -57,4 +60,4 @@ const getStudentModel = (sequelize, { DataTypes }) => {
     return Student; 
 }; 
 
-export default getStudentModel; 
+module.exports = getStudentModel; 

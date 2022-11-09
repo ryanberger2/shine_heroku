@@ -72,4 +72,4 @@ const getClassroomModel = (sequelize, { DataTypes }) => {
     return Classroom; 
 }; 
 
-export default getClassroomModel; 
+module.exports = getClassroomModel; 

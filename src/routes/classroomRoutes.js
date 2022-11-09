@@ -1,11 +1,10 @@
 const express = require('express'); 
 const classroomRouter = express.Router(); 
-const bodyParser = require('body-parser')
-const { pool } = require('./../../config');
-// const { Client } = require('pg-promise/typescript/pg-subset');
 const db = require('./../models/index.js'); 
-const { promiseImpl } = require('ejs');
-const Sequilize = require('sequelize'); 
+const Sequelize = require('sequelize'); 
+const getStudentModel = require('./../models/student'); 
+const getClassroomModel = require('./../models/classroom'); 
+
 
 // SHOW THE TEACHER'S NAME IN THE PAGE 
 // TRY WITH COMBINING PROMISES AND ASYNC/AWAIT
@@ -22,14 +21,39 @@ const Sequilize = require('sequelize');
 // }
 
 
+const getClassDetails2 = async (req, res, next) => {
+    try {
+        let { classname } = req.params
+        let studentDataPromise = getStudentModel.findAll({
+            where: {
+                class_name: classname
+            }
+        })
+        let classDataPromise = getClassroomModel.findOne({
+            where: {
+                class_name: classname
+            }
+        })
+        let studentData = await studentDataPromise
+        let classData = await classDataPromise
+        res.render('pages/classroom', {students: studentData, classroom: classData})
+    } catch(err) {
+        next(err); 
+    }
+}
+classroomRouter
+    .route('/2/:classname')
+    .get(getClassDetails2)
+
 // PROMISSES WIP
 const getClassDetails = async (req, res, next) => {
     try {
+        let { classname } = req.params
         let studentDataPromise = db.any(
-            'SELECT * FROM students where class_name = $1', [req.params.classname]
+            'SELECT * FROM students where class_name = $1', [classname]
         )
         let classDataPromise = db.one(
-            'SELECT * FROM classrooms where class_name = $1', [req.params.classname]
+            'SELECT * FROM classrooms where class_name = $1', [classname]
             )
         let studentData = await studentDataPromise
         let classData = await classDataPromise
