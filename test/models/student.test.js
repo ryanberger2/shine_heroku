@@ -1,29 +1,37 @@
-// const test = require('tape');
 const Student  = require("../../src/models/student.js");
 
-// test('requires name to be not null', (t) => {
-//     t.plan(1);
-
-    
-//     t.throws(async function() {
-//             let student = new Student();
-//             await student.validate();
-//     }, { 
-//         message: 'students.class_name cannot be null'
-//     });
-// });
-
-// separate things into controllers 
-// Apply Sequelize to creating / updating records
-// Test validation that the creating / updating works (fields filled out, 
-// data validation with datatypes, with classroom exists, etc. )
-// At least one test where 
-
-
-test('should throw with no info', async ()=> {
-    let student = new Student();
-    await expect(() => { student.validate() })
-    .rejects
-    .toThrow('fail'); 
+test('should default some params', async () => {
+    let student = new Student({
+        "class_name": "shine",
+        "student_name": "ryan",
+    });     
+    student.validate()
+    // Expecting both of these values to have been defaulted to 0
+    await expect(student.robot_offset).toBe(0);
+    expect(student.is_deleted).not.toBeTruthy();
 })
-; 
+
+test('should require a student_name', async ()=> {
+    let student = new Student({
+        "class_name": "shine",
+    });
+    await expect(async () => { await student.validate() })
+    .rejects
+    .toThrow(/students\.student_name cannot be null/); 
+})
+
+test('should require a class_name', async ()=> {
+    let student = new Student({
+        "student_name": "ryan",
+    });
+    await expect(async () => { await student.validate() })
+    .rejects
+    .toThrow(/students\.class_name cannot be null/); 
+})
+
+// 1. separate things into controllers 
+// 2. Apply Sequelize to creating & updating records
+// 3. Write tests to validate creating / updating (fields filled out, 
+// data validation with datatypes, with classroom exists, etc. )
+// 4. Write at least one test where ... 
+
