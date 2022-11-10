@@ -4,120 +4,46 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const db = require('./../models/index.js'); 
 const { pool } = require('./../../config'); 
-
-const showStudentForm = (req, res, messages) => {
-    pool.query('SELECT * FROM classrooms', (error, results) => {
-        if (error) {
-        throw error
-        }
-        //console.log(results.rows)
-        res.render('pages/new-student-form', {classrooms: results.rows, messages: messages})
-    })
-}
+const StudentController = require('./../controllers/studentController')
   
 studentRouter
     .route('/new')
-    .get(showStudentForm)
-
-studentRouter
-    .post('/new', urlencodedParser, (req, res) => {
-    console.log(req.body); 
-    const {class_name, student_name, student_birth_date, student_points, student_emojis, robot_offset} = req.body; 
-    pool.query(`INSERT INTO students 
-              (class_name, student_name, student_birth_date, student_points, student_emojis, robot_offset) 
-              VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, 
-              [class_name, student_name, student_birth_date, student_points, student_emojis, robot_offset], 
-        (err, result) => {
-        if (err) {
-            console.log(err)
-            showStudentForm (req, res, err.detail)
-        } else {
-            res.render('pages/student-added', {data: req.body}); 
-        }
-        })
+    .get((req, res, next) => {
+        let studentController = new StudentController();
+        studentController.showStudentForm(req, res, next);
+    })
+    .post((req, res, next) => {
+        let studentController = new StudentController(); 
+        studentController.createStudent(req, res, next); 
     })
 
-const updateStudentState = async (req, res, next) => {
-    try {
-        let studentStatePromise = db.one(
-            'SELECT student_state FROM students where student_id = $1', [req.params.id]
-        )
-        let studentState = await studentStatePromise; 
-        let newState = studentState.student_state !== true;
-        await db.none(
-            `UPDATE students SET student_state = ${newState} WHERE student_id = ${req.params.id};`
-        ); 
-        await db.none(
-            `INSERT INTO student_events (student_id, event_type, event_value) VALUES (${req.params.id}, 'focus_update', ${newState});`
-        ); 
-        res.status(200).json({
-            message: "student state updated", 
-            status: "success"
-        })
-    } catch (err) {
-        next(err); 
-    }
-}
-
-const getClassDetails = async (req, res, next) => {
-    try {
-        let studentDataPromise = db.any(
-            'SELECT * FROM students where class_name = $1', [req.params.classname]
-        )
-        let classDataPromise = db.one(
-            'SELECT * FROM classrooms where class_name = $1', [req.params.classname]
-            )
-        let studentData = await studentDataPromise
-        let classData = await classDataPromise
-        res.render('pages/classroom', {students: studentData, classroom: classData})
-    } catch (err) {
-        next(err); 
-    }
-}
 
 studentRouter
     .route('/toggle-state/:id')
-    .post(updateStudentState)
+    .post((req, res, next) => {
+        let studentController = new StudentController(); 
+        studentController.updateStudentState(req, res, next); 
+    })
 
 
 studentRouter
-    .get('/edit/:id', (req, res) => {
-        const id = req.params.id
-        pool.query('SELECT * FROM students WHERE student_id = $1', [id], (error, results) => {
-        if (error) {
-            console.log(error); 
-        }
-        res.render('pages/edit-student-form', {student: results.rows[0]}); 
-        })
+    .route('/edit/:id')
+    .get((req, res, next) => {
+        let studentController = new StudentController(); 
+        studentController.getEditStudent(req, res, next); 
     })
 
 studentRouter
-    .get('/:id', (req, res) => {
-        const id = req.params.id
-        pool.query('SELECT * FROM students WHERE id = $1', [id], (error, results) => {
-        if (error) {
-            throw error
-        } 
-        res.render('pages/student', {student: results.rows[0]}); 
-        })
+    .route('/:id')
+    .get((req, res, next) => {
+        let studentController = new StudentController(); 
+        studentController.getStudent(req, res, next);
     })
-  
-studentRouter
-    .post('/:id', (req, res) => {
-        const id = req.params.id; 
-        const {student_name, student_birth_date, student_points, student_state, student_emojis, robot_offset} = req.body; 
-        console.log(req.body); 
-        pool.query(
-            'UPDATE students SET student_name = $2, student_birth_date = $3, student_points = $4, student_state = $5, student_emojis = $6, robot_offset = $7 WHERE student_id = $1',
-            [id, student_name, student_birth_date, student_points, student_state, student_emojis, robot_offset], 
-            (error, results) => {
-        if (error) {
-            throw error
-        }
-        res.status(200)
-        res.json(results.rows)
-        })
+    .post((req, res, next) => {
+        let studentController = new StudentController(); 
+        studentController.editStudent(req, res, next);
     })
+
 
 
   module.exports = studentRouter; 

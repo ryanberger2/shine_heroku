@@ -22,8 +22,8 @@
         }
     %>
     <h1>Student details for <%= student.student_name %></h1> 
-    <h2>Class: <%= student.class_name %>, Student id: <%= student.student_id %> </h2>
-    <form id="create-student" method="POST" action="/student/<%= student.student_id %>">
+    <h2>Class: <%= student.class_name %>, Student id: <%= student.id %> </h2>
+    <form id="create-student" method="POST" action="/student/<%= student.id %>">
     <br />
         <label for="student_name">Student name</label>
         <input type="text" name="student_name" id="student_name" required value="<%= student.student_name %>">

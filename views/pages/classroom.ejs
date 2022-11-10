@@ -12,14 +12,14 @@
   <% for(let student of students) { %>
     <div class="num">
       <img alt="robot" id="robotImage" src="<%= "https://robohash.org/" + student.student_name + student.robot_offset + "?size=80x80" %>" />
-      <input type="checkbox" class="student-check" id=<%= student.student_id %> name=<%= student.student_id %> <% if (!student.student_state) {"checked"}; console.log(student.state) %>>
-      <label class="font-effect-neon" for=<%= student.student_id %> id=<%= student.student_id %>>
-        <%= student.student_id %>
+      <input type="checkbox" class="student-check" id=<%= student.id %> name=<%= student.id %> <% if (!student.student_state) {"checked"}; console.log(student.state) %>>
+      <label class="font-effect-neon" for=<%= student.id %> id=<%= student.id %>>
+        <%= student.id %>
       </label>
       <br />
-      <a href="/student/edit/<%= student.student_id %>" style="text-decoration:none; color:#efe3ee">✎</a>
-      <a href="/student/edit/<%= student.student_id %>" style="text-decoration:none; color:#efe3ee">💡</a>
-      <a href="/student/edit/<%= student.student_id %>" style="text-decoration:none; color:#efe3ee">➕</a>
+      <a href="/student/edit/<%= student.id %>" style="text-decoration:none; color:#efe3ee">✎</a>
+      <a href="/student/edit/<%= student.id %>" style="text-decoration:none; color:#efe3ee">💡</a>
+      <a href="/student/edit/<%= student.id %>" style="text-decoration:none; color:#efe3ee">➕</a>
     </div>
     <!-- ADD FUNCTION TO UPDATE DB WITH STATE OF STUDENT ON CLICK 
       POST TO ITS OWN ENDPOINT and update students; and events; 
