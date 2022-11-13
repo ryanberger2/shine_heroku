@@ -1,36 +1,30 @@
-const getStudentEventModel = (sequelize, { DataTypes }) => {
-    const StudentEvent = sequelize.define('student_event', {
+const sequelize = require('./../configs/sequelize'); 
+const Sequelize = require('sequelize'); 
+
+module.exports = sequelize.define('student_event', {
         student_id: {
-            type: DataTypes.INTEGER, 
+            type: Sequelize.INTEGER, 
             allowNull: false, 
             validate: {
                 notEmpty: true,
             }
         }, 
         event_type: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
             allowNull: false, 
             validate: {
                 notEmpty: true,
             }
         }, 
         event_value: {
-            type: DataTypes.STRING, 
+            type: Sequelize.STRING, 
         }, 
         is_deleted: {
-            type: DataTypes.BOOLEAN, 
+            type: Sequelize.BOOLEAN, 
             defaultValue: 0, 
             allowNull: false, 
             validate: {
                 notEmpty: true,
             }
         }, 
-    }); 
-    StudentEvent.associate = models => {
-        StudentEvent.belongsTo(models.Student, {foreignKey: 'student_id'})
-    }
-
-    return StudentEvent; 
-}; 
-
-export default StudentEvent; 
+}); 

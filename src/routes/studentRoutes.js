@@ -1,20 +1,16 @@
 const express = require('express'); 
 const studentRouter = express.Router(); 
-const bodyParser = require('body-parser')
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
-const db = require('./../models/index.js'); 
-const { pool } = require('./../../config'); 
-const StudentController = require('./../controllers/studentController')
+const StudentController = require('./../controllers/studentController'); 
   
 studentRouter
     .route('/new')
     .get((req, res, next) => {
         let studentController = new StudentController();
-        studentController.showStudentForm(req, res, next);
+        studentController.getNewStudent(req, res, next);
     })
     .post((req, res, next) => {
         let studentController = new StudentController(); 
-        studentController.createStudent(req, res, next); 
+        studentController.createNewStudent(req, res, next); 
     })
 
 

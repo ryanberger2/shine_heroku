@@ -47,8 +47,8 @@ create table classroom_events (
     event_type varchar(255) not null, 
     event_value varchar(255), 
     is_deleted boolean default false, 
-    createdAt timestamp default now(), 
-    updatedAt timestamp default now(), 
+    "createdAt" timestamp default now(), 
+    "updatedAt" timestamp default now(), 
     CONSTRAINT class_events_pk primary key(id)
 ); 
 
@@ -59,8 +59,8 @@ create table student_events (
     event_type varchar(255) not null, 
     event_value varchar(255), 
     is_deleted boolean default false, 
-    createdAt timestamp default now(), 
-    updatedAt timestamp default now(), 
+    "createdAt" timestamp default now(), 
+    "updatedAt" timestamp default now(), 
     CONSTRAINT student_events_pk primary key(id)
 ); 
 
@@ -104,14 +104,14 @@ values
 ; 
 
 -- Insert into classroom_events
-insert into classroom_events (classroom_id, event_type, event_value, createdat)
+insert into classroom_events (classroom_id, event_type, event_value, "createdAt")
 values 
     (1, 'timer_start', '', '2022-10-28 15:02:45.00000'), 
     (1, 'timer_end', '', '2022-10-28 15:10:45.00000')
 ; 
 
 -- Insert into student_events
-insert into student_events (student_id, event_type, event_value, createdat)
+insert into student_events (student_id, event_type, event_value, "createdAt")
 values 
     (1, 'focus_start', '', '2022-10-28 15:02:45.00000'), 
     (1, 'focus_end', '', '2022-10-28 15:08:45.00000'), 

@@ -11,7 +11,7 @@ test('should default some params', async () => {
     expect(student.is_deleted).not.toBeTruthy();
 })
 
-test('should require a student_name', async ()=> {
+test('student should require a student_name', async ()=> {
     let student = new Student({
         "class_name": "shine",
     });
@@ -20,7 +20,7 @@ test('should require a student_name', async ()=> {
     .toThrow(/students\.student_name cannot be null/); 
 })
 
-test('should require a class_name', async ()=> {
+test('student should require a class_name', async ()=> {
     let student = new Student({
         "student_name": "ryan",
     });
@@ -29,9 +29,14 @@ test('should require a class_name', async ()=> {
     .toThrow(/students\.class_name cannot be null/); 
 })
 
-// 1. separate things into controllers 
-// 2. Apply Sequelize to creating & updating records
+/* ----- Tests to create: ----- 
+* 1. Catch if someone tries to add a dupe student 
+* 2. Catch if someone tries to update a student and nullify name 
+* 3. Catch if 
+* 4. 
+* 5. 
+* 
+*/
 // 3. Write tests to validate creating / updating (fields filled out, 
 // data validation with datatypes, with classroom exists, etc. )
-// 4. Write at least one test where ... 
 
